@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <title>用户登录及会话</title>
+    <meta charset='UTF-8'>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <div class="form-container" ng-controller='myController'>
+      <p class="form-header">用户设置</p>
+      <form action="/user/update" method='POST'>
+        <label >用户名：</label>
+        <input type="text" name='username' ng-model='user.username'  disabled><br>
+        <label >邮箱：</label>
+        <input type="text" name='email' ng-model='user.email'><br>
+        <label >昵称：</label>
+        <input type="text" name='nickname' ng-model='user.nickname'><br>
+        <input type="submit" value='保存'>
+      </form>
+    </div>
+    <form action="/user/delete" method='POST'>
+      <input type="submit" value='删除用户'>
+    </form>
+    <hr><%= msg %>
+    <hr>{{error}}
+    <script src='/static/js/angular.min.js'></script>
+    <script src='/static/js/my_app.js'></script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+这个是采用Express+MongoDB+AngularJS制作的一个相册评论的web应用。
+需要先运行comment_init进行数据库初始化，再运行comment_server启动Express，在浏览器地址栏输入"localhost:8001"即可运行该应用。
+1.该应用利用MongoDB数据库的特性，可以进行嵌套评论。
+2.Express提供静态文件并处理get和post请求，并返回json数据给客户端。除此之外还使用了EJS模板引擎进行渲染。
+3.AngularJS可以在一个HTML包含其他HTML文件，在一定程度上实现了组件复用。通过使用ng-if和ng-show可以方便的在各个视图之间进行切换。
+4.对MongoDB数据库主要是通过Mongoose模块进行操作的。

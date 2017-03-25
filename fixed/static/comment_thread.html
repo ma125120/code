@@ -1,0 +1,17 @@
+<span class="commentTitle">{{commentThread.title}}</span>
+<input type="button" ng-show='addComment==false'
+        value='添加评论' ng-click='addComment=true' />
+<form ng-show='addComment==true'>
+  <label >主题：</label>
+  <input type="text" ng-model='replySubject'>
+  <label >评论：</label>
+  <textarea  ng-model='replyBody'></textarea>
+  <input type="button" value='发送'
+    ng-click="addComment=false;addReply(commentThread._id,replySubject,replyBody)">
+</form>
+<input type="button" ng-show='addComment==true'
+      value='关闭' ng-click='addComment=false;' >
+<div ng-repeat="comment in commentThread.replies"
+    ng-init="reply=false;replySubject='';replyBody=''">
+  <div class="comment" ng-include="'/static/comment.html'"></div>
+</div>

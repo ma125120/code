@@ -1,0 +1,22 @@
+<span class="username">{{comment.username}}</span>:
+<span class="subject">{{comment.subject}}</span>
+<p class="timestamp">
+  发送于{{comment.timestamp|date:"MMMM d yyyy H:mm"}}
+</p>
+<p class="commentBody">{{comment.body}}</p>
+<input type="button" ng-show='reply==false'
+      value='回复' ng-click='reply=true'>
+<form  ng-if="reply">
+  <label >主题：</label>
+  <input type="text" ng-model='replySubject'>
+  <label >评论：</label>
+  <textarea  ng-model='replyBody'></textarea>
+  <input type="button" value='发送'
+    ng-click="addReply(comment._id,replySubject,replyBody)">
+</form>
+<input type="button" ng-show='reply==true'
+    value='关闭' ng-click='reply=false;'>
+<div ng-repeat='comment in comment.replies'
+  ng-init="reply=false;replySubject='';replyBody=''">
+    <div class="comment" ng-include="'/static/comment.html'"></div>
+  </div>

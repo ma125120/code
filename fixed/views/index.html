@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app='myApp'>
+<head>
+  <title>用户登录及会话</title>
+  <meta charset='UTF-8'>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div ng-controller='myController'>
+    <h2>欢迎您。您是作为<%= username %> 登录的</h2>
+    <a href="/logout">logout</a>
+    <a href="/user">编辑用户</a>
+    <p>在这里输入你的代码</p>
+  </div>
+  <hr><%= msg %>
+  <script src='/static/js/angular.min.js'></script>
+  <script src='/static/js/my_app.js'></script>
+</body>
+
+</html>

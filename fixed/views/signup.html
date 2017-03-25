@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>用户注册</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <meta charset='UTF-8'>
+</head>
+<body>
+  <div class="form-container">
+    <p class="form-header">用户注册</p>
+    <form method="POST">
+      <label>用户名：</label>
+      <input type="text" name='username'><br>
+      <label>密码：</label>
+      <input type="password" name='password'><br>
+      <label >邮箱：</label>
+      <input type="email" name='email'>
+      <input type="submit" value='注册'>
+    </form>
+  </div>
+  <hr><%= msg %>
+</body>
+</html>
