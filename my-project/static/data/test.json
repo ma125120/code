@@ -1,0 +1,10 @@
+{
+  "results":[
+    {
+      "productName":"可口可乐",
+      "productPrice":3,
+      "productQuentity":2,
+      "productImg":"./static/img/1.jpg"
+    }
+  ]
+}
