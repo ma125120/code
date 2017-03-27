@@ -1,21 +1,3 @@
-# my-project
-
-> This is my first vue-project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+这是一个基于vue-cli+webpack+vue-router+vuex的仿京东的简易电商网站。
+主要页面有：商品展示页面，商品详情页面，购物车页面。
+拷贝dist到任务服务器的文件夹，在服务器端即可访问。
