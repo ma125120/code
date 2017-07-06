@@ -1,0 +1,14 @@
+{
+	"saler":[
+		{
+			"id":10001,
+			"name":"德克士",
+			"src":"./static/img/scroll/scroll1.jpg",
+			"score":5,
+			"sale_num":"月售428单",
+			"dispatch":"¥20起送/免配送费/¥29/人",
+			"distance":"492m",
+			"time":"27分钟"
+		}
+	]
+}
