@@ -1,13 +1,75 @@
-window.$M=(function() {
+/*让IE8支持forEach*/
+if ( !Array.prototype.forEach ) {
+    Array.prototype.forEach = function forEach( callback, thisArg ) {
+        var T, k;
+        if ( this == null ) {
+            throw new TypeError( "this is null or not defined" );
+        }
+        var O = Object(this);
+        var len = O.length >>> 0;
+        if ( typeof callback !== "function" ) {
+            throw new TypeError( callback + " is not a function" );
+        }
+        if ( arguments.length > 1 ) {
+            T = thisArg;
+        }
+        k = 0;
+        while( k < len ) {
+            var kValue;
+            if ( k in O ) {
+                kValue = O[ k ];
+                callback.call( T, kValue, k, O );
+            }
+            k++;
+        }
+    };
+}
+var util={
+    getCss:function(el,attr) {
+      if(typeof document.defaultView.getComputedStyle) {
+        return document.defaultView.getComputedStyle(el,null)[attr];
+      } else {
+        return el.currentStyle[attr];
+      }
+    }
+},ready=function ready(fn){
+    // 目前Mozilla、Opera和webkit 525+内核支持DOMContentLoaded事件
+    if(document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.removeEventListener('DOMContentLoaded',arguments.callee, false);
+            fn();
+        }, false);
+    } 
+    // 如果IE
+    else if(document.attachEvent) {
+        // 确保当页面是在iframe中加载时，事件依旧会被安全触发
+        document.attachEvent('onreadystatechange', function() {
+            if(document.readyState == 'complete') {
+                document.detachEvent('onreadystatechange', arguments.callee);
+                fn();
+            }
+        });
+        // 如果是IE且页面不在iframe中时，轮询调用doScroll 方法检测DOM是否加载完毕
+        if(document.documentElement.doScroll && typeof window.frameElement === "undefined") {
+            try{
+                document.documentElement.doScroll('left');
+            }
+            catch(error){
+                return setTimeout(arguments.callee, 20);
+            };
+            fn();
+        }
+  }
+}
+
+window.$=(function() {
   function _$(el) {
     var el=el[0];
     if(!el){
       return false;
     }
     if(isFunction(el)) {
-      $M.addEvent("DOMContentLoaded",document,function(e) {
-        el();
-      });
+      ready(el);
     } else {
       var ele=[],len,i;
       if(!isFunction(el)) {
@@ -18,7 +80,7 @@ window.$M=(function() {
           }
           this.length=len;
           return this;
-        } else if(typeof el=="object") {
+        } else if(typeof el=='object') {
           this[0]=el;this.length=1;
           return this;
         }
@@ -47,7 +109,7 @@ window.$M=(function() {
         this.length=i?i:1;
         return this;
       }
-  }
+    }
   }
   var getDisplay=function(item) {
     var dis=item.className;
@@ -60,12 +122,24 @@ window.$M=(function() {
                   :item.currentStyle["display"];
       item.className=dis;
     }
-  }
+  };
   _$.prototype={
+    top:function() {
+      return this[0].getBoundingClientRect().top;
+    },
+    height:function() {
+      if(this[0]==window) {
+        return  window.innerHeight||document.body.clientHeight;
+      }
+    },
+    width:function() {
+      if(this[0]==window) {
+        return  window.innerWidth||document.body.clientWidth;
+      }
+    },
     show:function show1() {
       var that=this;
-      setTimeout(function() {
-        that.each(function(item,index) {
+      that.each(function(item,index) {
             getDisplay(item);
             item.style.display=item.cache;
             var child=$M(item).find("*");
@@ -73,8 +147,7 @@ window.$M=(function() {
               getDisplay(item1);
               item1.style.display=item1.cache;
             });
-        });
-      },1000);
+      });
       return this;
     },
     hide:function() {
@@ -86,32 +159,47 @@ window.$M=(function() {
       return this;
     },
     text:function() {
-      if(arguments.length!=0) {
+      if(arguments.length==2) {
         var content=arguments[0];
         this.each(function(item,index) {
           item.innerText=content;
-        })
-      } else {
-        var arr=[];
-        this.each(function(item) {
-          arr.push(item.innerText);
         });
-        return arr.join(";");
+      } else {
+        var arr=this[0].innerText;
+        return arr;
       }
       return this;
+    },
+    css:function() {
+      var attr=arguments[0],
+          value=arguments[1];
+      if(arguments.length==2) {
+        this.each(function(item,index) {
+          item.style[attr]=value;console.log(item)
+        })
+      } else if(typeof attr=='string') {
+        var arr=util.getCss(this[0],attr);
+        return arr;
+      } else if(typeof attr=='object') {
+        var o=attr,t=this;
+        for(var name in o) {
+          if(!o.hasOwnProperty(name)) continue;
+          t.each(function(v,i) {
+            v.style[name]=o[name];
+          });
+        }
+      }
+      return this; 
     },
     val:function() {
       if(arguments.length!=0) {
         var content=arguments[0];
         this.each(function(item,index) {
           item.value=content;
-        })
-      } else {
-        var arr=[];
-        this.each(function(item) {
-          arr.push(item.value);
         });
-        return arr.join(";");
+      } else {
+        var arr=this[0].value;
+        return arr;
       }
       return this;
     },
@@ -122,11 +210,8 @@ window.$M=(function() {
           item.innerHTML=content;
         })
       } else {
-        var arr=[];
-        this.each(function(item) {
-          arr.push(item.innerHTML);
-        });
-        return arr.join(";");
+        var arr=this[0].innerHTML;
+        return arr;
       }
       return this;
     },
@@ -137,26 +222,30 @@ window.$M=(function() {
           item.dataset[attr]=value;
         })
       } else {
-        var arr=[],argu=arguments[0];
-        this.each(function(item) {
-          arr.push(item.dataset[argu]);
-        });
-        return arr.join(";");
+        var arr,attr=arguments[0];
+        arr=this[0].dataset[attr];
+        return arr;
       }
       return this;
     },
     attr:function() {
+      var attr=arguments[0],value=arguments[1];
       if(arguments.length==2) {
-        var attr=arguments[0],value=arguments[1];
         this.each(function(item,index) {
           item.setAttribute(attr,value);
         });
-      } else {
+      } else if(typeof attr=='string') {
         var arr=[],attr=arguments[0];
-        this.each(function(item) {
-          arr.push(item.getAttribute(attr));
-        });
-        return arr.join(";");
+        arr=this[0].getAttribute(attr);
+        return arr;
+      } else if(typeof attr=='object') {
+        var o=attr,t=this;
+        for(var name in o) {
+          if(!o.hasOwnProperty(name)) continue;
+          t.each(function(v,i) {
+            v.setAttribute(name,o[name]);
+          });
+        }
       }
       return this;
     },
@@ -277,10 +366,11 @@ window.$M=(function() {
       return $M(arr);
     },
     siblings:function(el) {
+      var t=this[0];
       if(!el) {
-        return this.parent().children();
+        return this.parent().children().not(t);
       } else {
-        return this.parent().children(el);
+        return this.parent().children(el).not(t);
       }
     },
     next:function() {
@@ -455,7 +545,7 @@ window.$M=(function() {
   $M.createXHR();
   $M.browser={
     isIE:function() {
-      var agent=window.navigator.userAgent;
+      var userAgent=window.navigator.userAgent;
       var isOpera = userAgent.indexOf("Opera") > -1;
          if (isOpera) {
              return "Opera"
@@ -557,6 +647,7 @@ window.$M=(function() {
   $M.on=function(type,ele,method) {
     type=type=="blur"?"change":type;
     $M.addEvent(type,document,function(e) {
+      var e=e||window.event;e.target=e.target||e.srcElement;
       if(e.target){
         for(var i=0,len=$M(ele).length;i<len;i++) {
           if(e.target==$M(ele)[i]) {
@@ -565,7 +656,21 @@ window.$M=(function() {
         }
       }
     });
-  }
+  };
+    /*扩展选择器的事件绑定*/
+  (function() {
+    var list=['click','mouseenter','mouseleave','mouseover','mouseout','mousedown','mouseup','contextmenu',
+        'load','DOMContentLoaded','error','abort','resize','scroll','change','blur'];
+    list.forEach(function(v,i) {
+      if(v=='blur') v='change';
+      $M.fn(v,function(method) {
+        $M.addEvent(v,this[0],method);
+      })
+    });
+    $M.fn('on',function(type,ele,method) {
+      $M.on(type,ele,method);
+    });
+  })();
   return $M;
 })();
 Object.prototype.each=function(method) {
