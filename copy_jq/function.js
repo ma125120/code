@@ -104,5 +104,25 @@ function getTop()
     } 
     return scrollTop;
 }
+/**选择器*/
+var $=(function() {
+    function toArray(el) {
+      return Array.prototype.slice.call(el,0);
+    }
+    function $1() {
+      var dom=document.querySelectorAll.apply(document,arguments[0]),
+          len=dom.length,
+          t=this;
+      toArray(dom).forEach(function(v,i) {
+        t[i]=v;
+      });
+      this.length=len;
+      return this;
+    };
+    var $=function() {
+      return new $1(arguments);
+    }
+    return $;
+})();
 
 

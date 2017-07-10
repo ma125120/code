@@ -3,25 +3,14 @@
   <head>
     <title>演示</title>
     <meta charset="utf-8">
-    <script src="util.js"></script>
+    
     <style>
         p {
           width:30px;
         }
-        .hidden {
-          display:none;
-        }
+
     </style>
-    <script>
-    $M(function() {
-        $M.on("blur","#in",function() {
-          console.log($M(this).val());
-        });
-      /*  $M.get("service.php",{name:"马",type:"说的"},function(res) {
-          console.log(res);
-        })*/
-      })
-    </script>
+
   </head>
   <body>
     <ul class="as" id="as" data-info="test">
@@ -34,5 +23,17 @@
     <p class='hidden'>,<span class="sdaspan hidden">231</span><span>3123</span></p>
     <p style="display:none">sdaasd <span>sad</span></p>
     <input type="text" id="in">
+
+        <script src="util.js"></script>
+    <script>
+    $(function() {
+        $(document).on("blur","#in",function() {
+          console.log($M(this).val());
+        });
+        $("#test1").show().siblings("li#test3").hide();
+
+    });
+
+    </script>
   </body>
 </html>
