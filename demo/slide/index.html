@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+  <title>轮播图</title>
+  <style type="text/css">
+  	* {
+  		padding:0;
+  		margin:0;
+  	}
+  	body,html {
+  		height:100%;
+  		width:100%;
+  	}
+  	.parent {
+  		position: relative;
+  	}
+  	#wrap {
+  		width:100%;
+  		min-height:500px;
+  		overflow: hidden;
+  	}
+  	#wrap img {
+  		position: absolute;
+  		top:0;
+  		left:0;
+  		z-index:0;
+  		opacity: 0;
+  		transition: all 0.5s ease-in-out;
+  	}
+  	#wrap img.active {
+  		z-index:1;
+  		opacity: 1;
+  	}
+  	.slide_ul {
+  		list-style-type: none;
+  		width:50%;
+  		position: absolute;
+  		bottom:32px;
+  		left:30%;
+  		z-index:10;
+  	}
+  	.slide_ul li {
+  		display: inline-block;
+  		width:32px;
+  		height:32px;
+  		margin-right: 32px;
+  		background: black;
+  		border-radius: 50%;
+  		transition: all 0.2s linear;
+  	}
+  	.slide_ul li.active {
+  		background: #fff;
+  	}
+  	.slide_ul li:hover  {
+		cursor: pointer;
+		background: white;
+  	}
+
+  </style>
+</head>
+<body>
+	<div class="parent">
+		<div id="wrap">
+	  		<img src="img/slider0.jpg" alt="" class='active' />
+	  		<img src="img/slider1.jpg" alt="" />
+	  		<img src="img/slider2.jpg" alt="" />
+	  		<img src="img/slider3.jpg" alt="" />
+	  		<img src="img/slider4.jpg" alt="" />
+	  	</div>
+
+	  	<ul class='slide_ul'>
+	  		<li class='active'></li>
+	  		<li></li>
+	  		<li></li>
+	  		<li></li>
+	  		<li></li>
+	  	</ul>
+	</div>
+  	
+  	<script src='js/util.js'></script>
+  	<script src='js/index.js'></script>
+</body>
+</html>
