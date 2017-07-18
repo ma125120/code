@@ -227,4 +227,31 @@ u.e={
   }
 }
 
+/**
+ * 模板字符串
+ * @param  {[type]} html [description]
+ * @param  {[type]} data [description]
+ * @return {[type]}      [description]
+ */
+var tmpl=function(html,data) {
+  var re=/<%([^%>]+)?%>/g,
+      reExp=/(^()?(if|for|else|switch|case|break|{|}))(.*)?/g,
+      code='var r=[];\n',
+      cursor=0,
+      m;
+  var add=function(line,js) {
+    js?(code+=line.match(reExp)?line+'\n':'r.push('+line+');\n')
+      :(code+=(line!='')?'r.push("'+line.replace(/"/g,'\\"')+'");\n':'');
+      return add;
+  }
+  while(m=re.exec(html)) {
+    add(html.slice(cursor,m.index))(m[1],true);
+    cursor=m.index+m[0].length;
+  }
+  add(html.substr(cursor,html.length-cursor));
+  code+='return r.join("");';
+  return new Function(code.replace(/[\r\t\n]/g,'')).apply(data);
+}
 
+var t="<p><%this.msg%></p>";
+console.log(tmpl(t,{msg:'信息'}));
