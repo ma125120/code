@@ -1,0 +1,51 @@
+
+:root {
+    --mainColor: #ff0000ff;
+    --white-theme:{
+    	color:#000;
+    	background: #fff;
+    }
+    --black-theme: {
+		color:#fff;
+		background: #000;
+    }
+}
+@custom-media    --mobile (width <= 640px);
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+.post-article :--heading {
+    color: color( var(--mainColor) blackness(+20%) );
+}
+@media (--mobile) {
+    .post-article :--heading {
+        margin-top: 0;
+    }
+}
+
+.white-theme {
+	@apply --white-theme;
+}
+.black-theme {
+	@apply --black-theme
+}
+
+body {
+	transform-style:preserve-3d;
+  	perspective: 3000px;
+}
+#first {
+	color:var(--mainColor);
+	background: #0ff;
+}
+.tl {
+	animation: tl 0.5s ease-in-out;
+	transform:translate(300px,300px) rotateY(0deg);
+}
+@keyframes tl {
+	0% {
+		transform:translate(0,0);
+	}
+
+	100% {
+		transform:translate(300px,300px);
+	}
+}

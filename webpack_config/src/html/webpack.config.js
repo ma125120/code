@@ -2,6 +2,26 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+
+
+var fs=require('fs');
+var h=path.join(__dirname,'../html');
+fs.readdir(h,function(err,entries) {
+  var w=[];
+  for(var idx in entries) {
+    var _name=entries[idx],_w={},
+        _path=path.join(__dirname,entries[idx]),
+        type=_name.slice(_name.lastIndexOf('\.')+1);
+    if(type=='html') {
+      _w.template=_path;
+      _w.filename=_name;
+      w.push(new HtmlWebpackPlugin(_w));
+    }
+  }
+  console.log(w)
+  return w;
+});
+
 module.exports = {
   // configuration
   entry: {
@@ -34,19 +54,6 @@ module.exports = {
 },
   devtool: "source-map",
   plugins: [
-    new ExtractTextPlugin("../css/[name].css"),
-    new HtmlWebpackPlugin({
-      filename: '../ma.html',
-      template: 'build/index.html',
-      chunks: ['app', 'vendors']
-    }),
-    new webpack.LoaderOptionsPlugin({
-     minimize: true
-   }),
-     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      filename: 'vendors.js'
-    })
+
   ]
 };
