@@ -52,7 +52,7 @@ module.exports = {
   },
   devServer:{
     inline:true,
-   // contentBase: path.resolve(__dirname,'node/ma.html'),
+    contentBase: path.resolve(__dirname,'src'),
     // 输出文件的路径
     publicPath: '/',
     port:3001,
