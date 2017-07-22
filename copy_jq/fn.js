@@ -11,24 +11,9 @@
   </head>
 
 
-// <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-// <meta name="renderer" content="webkit">
-  /*
-  *使用JSONP方式进行跨域请求
-  *@param url 跨域请求的地址
-  *@param method 跨域请求成功后的调用方法名称，必须为字符串
-   */
-  function JSONP(url,methodName) {
-  	if(typeof methodName!=='String') throw new Error("第2个参数必须为字符串");
-  	  var jsonp=document.createElement("script"),
-      		head=document.querySelectorAll("head")[0]; 
-      url.indexOf("?")==-1?(url+='?'):(url+='&');
-      jsonp.src=url+'callback='+methodName;
-      head.appendChild(jsonp);
-      jsonp.onload=function(){
-        head.removeChild(jsonp);
-      }
-  }
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+
 /*
 *获取查询字符串或哈希值的内容
 *@param hash 默认查询字符串，hash为true时获取哈希值
@@ -110,6 +95,23 @@ function getScrollTop() {
 
 
 var u=window.u||{};
+/**
+ * 实现类式继承
+ * @param  {[type]} 子类   [description]
+ * @param  {[type]} 父类 [description]
+ * @return {[type]}            [description]
+ */
+u.extend=function(subClass,superClass) {
+  var F=function() {};
+  F.prototype=superClass.prototype;
+  subClass.prototype=new F();
+  subClass.prototype.constructor=superClass;
+
+  subClass.superclass=superClass.prototype;
+  if(superClass.prototype.constructor==Object.prototype.constructor) {
+    superClass.prototype.constructor=superClass;
+  }
+};
 /**
  * 自定义事件
  */
