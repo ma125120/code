@@ -1,0 +1,34 @@
+<view class="page-header">
+	<input class="page-header-text"
+	placeholder="输入搜索关键词" focus
+	bindchange="search" />
+</view>
+<scroll-view class="page-body" scroll-y="true">
+	<navigator url='../movie/movie?id={{item.id}}' wx:for="{{movies}}" wx:key="{{index}}">
+		<view class="item">
+			<view>
+				<image src="{{item.images.small}}" class="poster"></image>
+			</view>
+			
+			<view class="meta">
+				<text class="title">
+					{{item.title}}
+				</text>
+				<text class="sub-title">
+					{{item.original_title}}({{item.year}})
+				</text>
+				<view class="artists">
+					<text wx:for="{{item.directors}}" wx:key="{{key}}">
+						{{item.name}}
+					</text>
+				</view>
+			</view>
+			<view class="rating">
+				<text>
+					{{item.rating.average}}
+				</text>
+			</view>
+		</view>
+	</navigator>
+</scroll-view>
+

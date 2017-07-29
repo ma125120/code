@@ -1,0 +1,42 @@
+
+<scroll-view class="page-body" scroll-y="true">
+		<view class="movie">
+			<view>
+				<image src="{{movie.images.large}}" class="poster"></image>
+			</view>
+			<view class="meta">
+				<text class="title">
+					{{movie.title}}
+				</text>
+			</view>
+			<view class="info">
+				<text>
+					评分：{{movie.rating.average}}
+				</text>
+			</view>
+			<view class="info">
+				<text>
+					导演：
+				</text>
+				<text wx:for="{{movie.directors}}" wx:key="{{key}}">
+					{{item.name}}
+				</text>
+			</view>
+			<view class="info">
+				<text>
+					主演：
+				</text>
+				<text wx:for="{{movie.casts}}" wx:key="{{key}}">
+						{{item.name}}
+					</text>
+			</view>
+			<view class="summary">
+				<text class="label">摘要：</text>
+				<text class="content">
+					{{movie.summary}}
+				</text>
+			</view>
+			
+			
+		</view>
+</scroll-view>

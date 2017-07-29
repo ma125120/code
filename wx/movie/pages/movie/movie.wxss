@@ -1,0 +1,37 @@
+.page-body {
+  width:56%;
+  justify-content: center;
+  text-align:center;
+  margin:10rpx auto;
+}
+
+.poster {
+  width:500rpx;
+  height:740rpx;
+  margin:30rpx;
+}
+.title {
+  font-weight: bold;
+}
+.meta {
+  margin-top:-36rpx;
+}
+.info {
+  font-size:24rpx;
+  text-align:left;
+  margin-top: 20rpx;
+}
+.info text {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+.summary {
+  text-align: left;
+  margin-top: 40rpx;
+}
+.summary .label {
+  font-weight: bold;
+}
+.summary .content {
+  font-size:24rpx;
+}
