@@ -1,4 +1,6 @@
-
+<view class="page-header">
+	<text class='page-header-text'>豆瓣影评</text>
+</view>
 <scroll-view class="page-body" scroll-y="true">
 	<navigator url='../movie/movie?id={{item.id}}' wx:for="{{movies}}" wx:key="{{index}}">
 		<view class="item">
