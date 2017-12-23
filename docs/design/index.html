@@ -1,0 +1,192 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>design</title>
+</head>
+<body>
+	<div id="app">
+		<div v-for="(first,index) in webs">
+			<h1 class="title">{{first.title}}</h1>
+			<div v-for="(second,i) in first.children">
+				<h2>{{(i+1)}}.{{second.title}}</h2>
+				<p><a :href="second.url">{{second.url}}</a></p>
+			</div>
+		</div>
+	</div>
+	<script src="js/vue.min.js"></script>
+	<script>
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'Hello Vue!',
+		    webs:[{
+		    	title:'网页、UI设计门户',
+		    	children:[{
+		    		title:'站酷',
+		    		url:'http://www.zcool.com.cn/'
+		    	},{
+		    		title:'八只熊',
+		    		url:'http://www.8bears.com/coolsite/'
+		    	},{
+		    		title:'国外网站欣赏',
+		    		url:'http:///www.thefwa.com'
+		    	},{
+		    		title:'网页设计师联盟',
+		    		url:'http://www.68design.net/'
+		    	},{
+		    		title:'我爱设计网',
+		    		url:'http://www.52design.com/'
+		    	},{
+		    		title:'蓝色理想',
+		    		url:'http://www.blueidea.com'
+		    	},{
+		    		title:'视觉中国',
+		    		url:'http://www.chinavisual.com'
+		    	},{
+		    		title:'创意视觉',
+		    		url:'http://cvsion.com/'
+		    	},{
+		    		title:'或外设计门户',
+		    		url:'http://www.deviantart.com/'
+		    	},{
+		    		title:'合子ui',
+		    		url:'http://www.boxui.com'
+		    	},{
+		    		title:'酷点',
+		    		url:'http://www.koodian.com'
+		    	},{
+		    		title:'优艾网',
+		    		url:'http://www.chinaui.com'
+		    	},{
+		    		title:'中国UI设计师大社区',
+		    		url:'http://www.uirsss.com'
+		    	},{
+		    		title:'ui制造',
+		    		url:'http://www.uimarker.com'
+		    	},{
+		    		title:'ui设计网',
+		    		url:'http://www.worldui.com'
+		    	},]
+		    },{
+		    	title:'素材门户',
+		    	children:[{
+		    		title:'素材精品屋',
+		    		url:'http://www.sucaiw.com/'
+		    	},{
+		    		title:'昵图网',
+		    		url:'http://www.nipic.com/'
+		    	},{
+		    		title:'全景图',
+		    		url:'http:///www.quanjing.com'
+		    	},{
+		    		title:'图库',
+		    		url:'http://www.tucool.net/'
+		    	},{
+		    		title:'素材库',
+		    		url:'http://www.sccooo.com/'
+		    	},{
+		    		title:'logo大全',
+		    		url:'http://logopond.com'
+		    	},{
+		    		title:'图图网',
+		    		url:'http://www.tutu001.com'
+		    	},{
+		    		title:'创意优优花园',
+		    		url:'http://uuhy.com/'
+		    	},]
+		    },{
+		    	title:'专业ui设计团队',
+		    	children:[{
+		    		title:'Eico设计',
+		    		url:'http://www.eicodesign.com/'
+		    	},{
+		    		title:'Reooo',
+		    		url:'http://www.reooo.com/'
+		    	},{
+		    		title:'西安超人科技',
+		    		url:'http:///www.skyui.net'
+		    	},{
+		    		title:'UI power',
+		    		url:'http://www.uipower.com/'
+		    	},{
+		    		title:'Rigo设计',
+		    		url:'http://www.rigodesign.com/'
+		    	},{
+		    		title:'icon设计',
+		    		url:'http://icon.cn/cn/'
+		    	},{
+		    		title:'记忆拼图',
+		    		url:'http://www.zcool.com.cn/u/35500/'
+		    	},]
+		    },{
+		    	title:'图标设计及素材',
+		    	children:[{
+		    		title:'中文图标搜索',
+		    		url:'http://www.iconpng.com/'
+		    	},{
+		    		title:'fast icon',
+		    		url:'http://www.fasticon.com/'
+		    	},{
+		    		title:'dry icons',
+		    		url:'http:///www.dryicons.com'
+		    	},{
+		    		title:'icon trip',
+		    		url:'http://www.icontrip.com/'
+		    	},{
+		    		title:'提供搜索',
+		    		url:'http://www.icones.pro/'
+		    	},{
+		    		title:'国外图标',
+		    		url:'http://weloveicons.com'
+		    	},{
+		    		title:'free icons',
+		    		url:'http://www.freeiconsdownload.com/'
+		    	},{
+		    		title:'图标搜索',
+		    		url:'http://www.iconfinder.com'
+		    	},{
+		    		title:'free icons web',
+		    		url:'http://www.freeiconsweb.com/'
+		    	},]
+		    },{
+		    	title:'用户体验团队网站',
+		    	children:[{
+		    		title:'UCD大社区',
+		    		url:'http://www.ucdchina.com/'
+		    	},{
+		    		title:'腾讯WSD',
+		    		url:'http://wsd.tencent.com/'
+		    	},{
+		    		title:'腾讯CDC',
+		    		url:'http:///cdc.tencent.com'
+		    	},{
+		    		title:'腾讯ISD',
+		    		url:'http://www.icontrip.com/'
+		    	},{
+		    		title:'淘宝UED',
+		    		url:'http://www.icones.pro/'
+		    	},{
+		    		title:'薯片会',
+		    		url:'http://ued.shupianhui.com'
+		    	},{
+		    		title:'口碑UED',
+		    		url:'http://ued.koubei.com'
+		    	},{
+		    		title:'阿里ued',
+		    		url:'http://www.aliued.com'
+		    	},{
+		    		title:'阿里妈妈ued',
+		    		url:'http://ued.alimama.com/'
+		    	},{
+		    		title:'163UED',
+		    		url:'http://www.ued163.com/'
+		    	},{
+		    		title:'搜狐UED',
+		    		url:'http://todd-lee.net/blog/'
+		    	},]
+		    },]
+		  }
+		})
+	</script>
+</body>
+</html>
