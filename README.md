@@ -8,10 +8,18 @@
 var toArray = function(obj) {
   return [].slice.call(obj);
 }
-var els = toArray(document.querySelectorAll("div,pre,p,section,span,a,ul,li,ol,aside,dl,dd,dt"));
+var els = toArray(document.querySelectorAll("div,p,section,span,a,ul,li,ol,aside,dl,dd,dt,pre"));
 els.map(el=>{
   el.style.background = "#1c1f2b";
   el.style.color = "#bdcadb";
+})
+var pre = toArray(document.querySelectorAll("pre"));
+pre.map(el=>{
+  el.style.background = "#414556";
+})
+var span = toArray(document.querySelectorAll("code span"));
+span.map(el=>{
+  el.setAttribute("style","");
 })
 ```
 
