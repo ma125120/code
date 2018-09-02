@@ -23,3 +23,54 @@ span.map(el=>{
 })
 ```
 
+```
+//计算浮点数
+function leftPad(str, len) {
+  if ( ('' + str).length < len ) {
+    return ('0'.repeat(len - ('' + str).length) + str);
+  } else {
+    return str;
+  }
+}
+function rightPad(str, len) {
+  if ( ('' + str).length < len ) {
+    return ( str + '0'.repeat(len - ('' + str).length) );
+  } else {
+    return str;
+  }
+}
+var exec = function(num1, num2) {
+  var str1 = ('' + num1).split("."),
+      str2 = ('' + num2).split("."),
+      big1 = str1[0],
+      sm1 =  str1[1],
+      big2 = leftPad(str2[0], big1.length),
+      sm2 =  rightPad(str2[1], sm1.length),
+      arr1 = [],
+      arr2 = [],
+      prev = 0;
+  for(let i = sm1.length - 1; i >= 0; i--) {
+    var _num = +sm1[i] + (+sm2[i]) + prev;
+    if(_num > 10) {
+      arr2.push(_num % 10);
+      prev = _num / 10;
+    } else {
+      arr2.push(_num);
+    }
+  }
+
+  for(let j = big1.length - 1; j >= 0; j--) {
+    var _num = +big1[j] + (+big2[j]) + prev;
+    if(_num > 10) {
+      arr1.push(_num % 10);
+      prev = _num / 10;
+    } else {
+      arr1.push(_num);
+    }
+  }
+
+  return `${arr1.reverse().join("")}.${arr2.reverse().join("")}`
+}
+
+console.log(exec(0.03, 0.2));
+```
