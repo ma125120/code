@@ -4,6 +4,9 @@
 4. my-project 这是一个基于vue-cli+webpack+vue-router+vuex的仿京东的简易电商网站。
 
 ```javascript
+
+flutter doctor --android-licenses 
+
 // 改变页面的背景和字体颜色，暗色背景适合阴天阅读
 var toArray = function(obj) {
   return [].slice.call(obj);
