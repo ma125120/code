@@ -4,6 +4,9 @@
 4. my-project 这是一个基于vue-cli+webpack+vue-router+vuex的仿京东的简易电商网站。
 
 ```javascript
+npm config set phantomjs_cdnurl=https://npm.taobao.org/dist/phantomjs
+npm config set chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver 
+npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 
 flutter doctor --android-licenses 
 
