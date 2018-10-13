@@ -8,6 +8,8 @@ npm config set phantomjs_cdnurl=https://npm.taobao.org/dist/phantomjs
 npm config set chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver 
 npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 
+yum install perl-version perl-Data-Dumper perl-devel
+
 flutter doctor --android-licenses 
 
 // 改变页面的背景和字体颜色，暗色背景适合阴天阅读
