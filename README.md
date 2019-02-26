@@ -25,7 +25,7 @@ var pre = toArray(document.querySelectorAll("pre"));
 pre.map(el=>{
   el.style.background = "#414556";
 })
-var span = toArray(document.querySelectorAll("code span"));
+var span = toArray(document.querySelectorAll("pre span, code span"));
 span.map(el=>{
   el.setAttribute("style","");
 })
