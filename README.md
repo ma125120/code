@@ -16,7 +16,7 @@ flutter doctor --android-licenses
 var toArray = function(obj) {
   return [].slice.call(obj);
 }
-var els = toArray(document.querySelectorAll("div,p,section,span,a,ul,li,ol,aside,dl,dd,dt,pre"));
+var els = toArray(document.querySelectorAll("*"));
 els.map(el=>{
   el.style.background = "#1c1f2b";
   el.style.color = "#bdcadb";
