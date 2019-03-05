@@ -21,6 +21,10 @@ els.map(el=>{
   el.style.background = "#1c1f2b";
   el.style.color = "#bdcadb";
 })
+var aEl = toArray(document.querySelectorAll("a"));
+aEl.map(el=>{
+  el.style.textDecoration = "underline"
+})
 var pre = toArray(document.querySelectorAll("pre, code"));
 pre.map(el=>{
   el.setAttribute("style", "background: rgb(28, 31, 43) !important;color: rgb(189, 202, 219);");
