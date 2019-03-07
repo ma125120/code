@@ -31,6 +31,6 @@ pre.map(el=>{
 })
 var span = toArray(document.querySelectorAll("pre span, code span"));
 span.map(el=>{
-  el.setAttribute("style","");
+  el.setAttribute("style","color: #bdcadb");
 })
 ```
