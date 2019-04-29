@@ -13,24 +13,35 @@ yum install perl-version perl-Data-Dumper perl-devel
 flutter doctor --android-licenses 
 
 // 改变页面的背景和字体颜色，暗色背景适合阴天阅读
-var toArray = function(obj) {
-  return [].slice.call(obj);
-}
-var els = toArray(document.querySelectorAll("*"));
-els.map(el=>{
-  el.style.background = "#1c1f2b";
-  el.style.color = "#bdcadb";
-})
-var aEl = toArray(document.querySelectorAll("a"));
-aEl.map(el=>{
-  el.style.textDecoration = "underline"
-})
-var pre = toArray(document.querySelectorAll("pre, code"));
-pre.map(el=>{
-  el.setAttribute("style", "background: rgb(28, 31, 43) !important;color: rgb(189, 202, 219);");
-})
-var span = toArray(document.querySelectorAll("pre span, code span"));
-span.map(el=>{
-  el.setAttribute("style","color: #bdcadb");
-})
+    var changeColor = function() {
+        var toArray = function(obj) {
+            return [].slice.call(obj);
+        }
+        var els = toArray(document.querySelectorAll("*"));
+        els.map(el=>{
+            let style = el.getAttribute("style");
+            el.setAttribute("style", style + "; color: #bdcadb !important; background: #1c1f2b !important");
+            // el.style.background = "#1c1f2b";
+            // el.style.color = "#bdcadb";
+        })
+        var aEl = toArray(document.querySelectorAll("a"));
+        aEl.map(el=>{
+            el.style.textDecoration = "underline";
+            let style = el.getAttribute("style");
+            el.setAttribute("style", style + "color: #bdcadb !important");
+        })
+        var pre = toArray(document.querySelectorAll("pre, code"));
+        pre.map(el=>{
+            el.setAttribute("style", "background: rgb(28, 31, 43) !important;color: rgb(189, 202, 219);");
+        })
+        var span = toArray(document.querySelectorAll("pre span, code span"));
+        span.map(el=>{
+            el.setAttribute("style","color: #bdcadb");
+        });
+    }
+
+    changeColor();
+    setTimeout(() => {
+        changeColor();
+    }, 1000);
 ```
