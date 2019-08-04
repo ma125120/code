@@ -8,6 +8,7 @@ npm config set phantomjs_cdnurl=https://npm.taobao.org/dist/phantomjs
 npm config set chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver 
 npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 
+yarn add node-sass  --ignore-scripts
 yum install perl-version perl-Data-Dumper perl-devel
 
 flutter doctor --android-licenses 
